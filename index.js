@@ -35,13 +35,13 @@ async function getScreenText(imgName) {
   return output;
 }
 
-async function waitFor(imgName, tag) {
+async function waitFor(imgName, tag, timeout=300) {
 
   let slept = 0;
   while (true) {
     slept += 1;
-    if (slept >= 300) {
-      throw new Error("Timeout can not boot");
+    if (slept >= timeout) {
+      return false
     }
     await sleep(1000);
 
@@ -177,9 +177,10 @@ async function run() {
     await sleep(1000);
     await pressEnter(imgName);
 
-    await waitFor(imgName, "DNS domain name");
-    await sleep(1000);
-    await pressEnter(imgName);
+    if (await waitFor(imgName, "DNS domain name", 10)) {
+      await sleep(1000);
+      await pressEnter(imgName);
+    }
 
 
     await waitFor(imgName, "Password for root");
