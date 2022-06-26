@@ -274,8 +274,8 @@ async function run() {
     await sleep(1000);
 
 
-    await exec.exec("bash ", [], { input: "if [ ! -e ~/.ssh/id_rsa ] ; then ssh-keygen -f  ~/.ssh/id_rsa ; fi" });
-    await exec.exec("bash ", [], { input: "echo \"echo '$(cat ~/.ssh/id_rsa.pub)' >>~/.ssh/authorized_keys\" >>enablessh.txt" });
+    await exec.exec("bash ", [], { input: "if [ ! -e ~/.ssh/id_rsa ] ; then ssh-keygen -f  ~/.ssh/id_rsa -q -N \"\"; fi" });
+    await exec.exec("bash ", [], { input: "echo \"echo '$(base64 ~/.ssh/id_rsa.pub)' | openssl base64 -d >>~/.ssh/authorized_keys\" >>enablessh.txt" });
 
 
     await vboxmanage(imgName, "controlvm", "keyboardputfile  enablessh.txt");
