@@ -14,14 +14,14 @@ jobs:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
       with:
-        node-version: '12'
+        node-version: '16'
         check-latest: true
     - run: npm install
     - run: node index.js
     - name: Get release
       if: "contains(github.ref, 'refs/tags/')"
       id: get_release
-      uses: bruceadams/get-release@v1.2.1
+      uses: bruceadams/get-release@v1.2.3
       env:
         GITHUB_TOKEN: ${{ github.token }}
     - name: Upload Release Asset
