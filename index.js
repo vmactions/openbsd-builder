@@ -342,7 +342,7 @@ async function run() {
   } catch (error) {
     core.setFailed(error.message);
   } finally {
-    if (process.env["DEBUG"]) {
+    if (!process.env["DEBUG"]) {
       await exec.exec("killall -9 ngrok", [], { ignoreReturnCode: true });
     }
   }
