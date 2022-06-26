@@ -358,9 +358,9 @@ async function run() {
 
     core.info("Split file");
     await io.rmRF(ova + ".zip");
-    
-    await exec.exec("cp ~/.ssh/id_rsa  " + __dirname + "/mac.id_rsa");
-    
+
+    await exec.exec("bash ", [], { input: "cp ~/.ssh/id_rsa  " + __dirname + "/mac.id_rsa" });
+
     await exec.exec("zip -0 -s 2000m " + ova + ".zip " + ova + " id_rsa.pub  mac.id_rsa");
     await exec.exec("ls -lah");
 
