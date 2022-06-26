@@ -276,7 +276,8 @@ async function run() {
 
     await exec.exec("bash ", [], { input: "if [ ! -e ~/.ssh/id_rsa ] ; then ssh-keygen -f  ~/.ssh/id_rsa -q -N \"\"; fi" });
     await exec.exec("bash ", [], { input: "echo \"echo '$(base64 ~/.ssh/id_rsa.pub)' | openssl base64 -d >>~/.ssh/authorized_keys\" >>enablessh.txt" });
-
+    await exec.exec("bash ", [], { input: "echo \"\" >>enablessh.txt" });
+    await exec.exec("bash ", [], { input: "echo \"\" >>enablessh.txt" });
 
     await vboxmanage(imgName, "controlvm", "keyboardputfile  enablessh.txt");
     core.info("setup ssh finished");
@@ -304,7 +305,7 @@ async function run() {
 //    await exec.exec("ssh openbsd", [], { input: fs.readFileSync(init) });
 
     core.info("Power off");
-    await exec.exec("ssh openbsd", [], { input: 'shutdown -y -i5 -g0' });
+    await exec.exec("ssh openbsd", [], { input: 'shutdown -h now' });
 
     while (true) {
       core.info("Sleep 2 seconds");
