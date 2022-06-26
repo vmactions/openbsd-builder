@@ -177,9 +177,9 @@ async function run() {
     await sleep(1000);
     await pressEnter(imgName);
 
-//    await waitFor(imgName, "DNS domain name");
-//    await sleep(1000);
-//    await pressEnter(imgName);
+    await waitFor(imgName, "DNS domain name");
+    await sleep(1000);
+    await pressEnter(imgName);
 
 
     await waitFor(imgName, "Password for root");
