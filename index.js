@@ -350,6 +350,7 @@ async function run() {
       }
     }
 
+    let ova = "openbsd-6.9.ova";
     core.info("Export " + ova);
     await io.rmRF(ova);
     await vboxmanage(imgName, "export", "--output " + ova);
