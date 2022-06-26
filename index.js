@@ -279,6 +279,30 @@ async function run() {
     await exec.exec("bash ", [], { input: "echo \"\" >>enablessh.txt" });
     await exec.exec("bash ", [], { input: "echo \"\" >>enablessh.txt" });
 
+    await pressEnter(imgName);
+    await sleep(1000);
+
+    await pressEnter(imgName);
+    await sleep(1000);
+
+    await pressEnter(imgName);
+    await sleep(1000);
+
+    await pressEnter(imgName);
+    await sleep(1000);
+
+    await pressEnter(imgName);
+    await sleep(1000);
+
+    await vboxmanage(imgName, "controlvm", "keyboardputstring  root");
+    await pressEnter(imgName);
+    await sleep(1000);
+
+    await vboxmanage(imgName, "controlvm", "keyboardputstring  " + rootPassword);
+    await pressEnter(imgName);
+    await sleep(1000);
+
+
     await vboxmanage(imgName, "controlvm", "keyboardputfile  enablessh.txt");
     core.info("setup ssh finished");
 
@@ -305,7 +329,7 @@ async function run() {
 //    await exec.exec("ssh openbsd", [], { input: fs.readFileSync(init) });
 
     core.info("Power off");
-    await exec.exec("ssh openbsd", [], { input: 'shutdown -h now' });
+    await exec.exec("ssh openbsd", [], { input: 'shutdown -p now' });
 
     while (true) {
       core.info("Sleep 2 seconds");
