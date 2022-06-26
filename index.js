@@ -274,7 +274,7 @@ async function run() {
     await sleep(1000);
 
 
-    await exec.exec("bash ", [], { input: "[ ! -e ~/.ssh/id_rsa ] && ssh-keygen -f  ~/.ssh/id_rsa" });
+    await exec.exec("bash ", [], { input: "if [ ! -e ~/.ssh/id_rsa ] ; then ssh-keygen -f  ~/.ssh/id_rsa ; fi" });
     await exec.exec("bash ", [], { input: "echo \"echo '$(cat ~/.ssh/id_rsa.pub)' >>~/.ssh/authorized_keys\" >>enablessh.txt" });
 
 
