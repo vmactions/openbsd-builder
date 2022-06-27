@@ -73,7 +73,7 @@ async function waitFor(imgName, tag, timeout=300) {
 async function run() {
   try {
 
-    let sshport = 2223;
+    let sshport = 2224;
     fs.appendFileSync(path.join(process.env["HOME"], "/.ssh/config"), "Host openbsd " + "\n");
     fs.appendFileSync(path.join(process.env["HOME"], "/.ssh/config"), " User root" + "\n");
     fs.appendFileSync(path.join(process.env["HOME"], "/.ssh/config"), " HostName localhost" + "\n");
@@ -120,7 +120,7 @@ async function run() {
     core.info("Create VM");
 
     let vhd = imgName + ".vdi";
-    await exec.exec("sudo vboxmanage  createhd --filename " + vhd + " --size 100000");
+    await exec.exec("sudo vboxmanage  createhd --filename " + vhd + " --size 1000000"); //1TB
 
     await exec.exec("sudo vboxmanage  createvm  --name " + imgName + " --ostype OpenBSD_64  --default   --basefolder openbsd --register");
 
