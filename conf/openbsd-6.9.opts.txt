@@ -1,0 +1,24 @@
+
+
+
+Install, (Upgrade, (A)utoinstall  |  string i  ; enter ; sleep 1  enter
+
+
+
+System hostname     |  string openbsd ; enter
+
+
+Which network interface do you wish to configure  |  enter
+
+
+IPv4 address for  |  enter
+
+
+autoconf  |  enter
+
+
+
+
+
+
+
