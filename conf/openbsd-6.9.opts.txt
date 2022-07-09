@@ -50,7 +50,17 @@ Location of sets |  enter
 Pathname to the sets | enter
 
 
-Set name  |  string '-comp69*' ; enter; sleep 1; enter
+Set name  |  string '-comp*' ; enter; sleep 1; enter
+
+Set name  |  string '-xbase*' ; enter; sleep 1; enter
+
+Set name  |  string '-xserv*' ; enter; sleep 1; enter
+
+Set name  |  string '-man*' ; enter; sleep 1; enter
+
+Set name  |  string '-game*' ; enter; sleep 1; enter
+
+Set name  |  string '-xfont*' ; enter; sleep 1; enter
 
 
 
