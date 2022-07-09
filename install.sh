@@ -126,7 +126,7 @@ sleep 1
 $vmsh enter  $osname
 sleep 1
 
-inputKeys "root ; enter ; string openbsd ; enter"
+inputKeys "string root ; enter ; string openbsd ; enter"
 
 
 

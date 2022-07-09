@@ -12,10 +12,6 @@ jobs:
     runs-on: macos-12
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-      with:
-        node-version: '16'
-        check-latest: true
     - run: |
         chmod +x install.sh
         ./install.sh conf/openbsd-6.9.conf
