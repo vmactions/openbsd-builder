@@ -94,7 +94,105 @@ sleep 2
 $vmsh  processOpts  $osname  "$opts"
 
 
+$vmsh shutdownVM $osname
 
+
+$vmsh detachISO $osname
+
+$vmsh startVM $osname
+
+
+
+###############################################
+
+
+
+waitForText "Installing: intel"
+
+sleep 10
+
+waitForText "logi"
+
+
+$vmsh enter  $osname
+sleep 1
+
+$vmsh enter  $osname
+sleep 1
+
+$vmsh enter  $osname
+sleep 1
+
+$vmsh enter  $osname
+sleep 1
+
+inputKeys "root ; enter ; string openbsd ; enter"
+
+
+
+
+echo '
+
+sed -i "s/PermitRootLogin no/PermitRootLogin yes/" /etc/ssh/sshd_config
+
+sed -i "s/#PermitEmptyPasswords no/PermitEmptyPasswords yes/" /etc/ssh/sshd_config
+
+sed -i "s/#PubkeyAuthentication no/PubkeyAuthentication yes/" /etc/ssh/sshd_config
+
+
+
+echo "AcceptEnv   *"  >> /etc/ssh/sshd_config
+
+mkdir -p ~/.ssh
+
+chmod -R 600 ~/.ssh
+
+ssh-keygen -t rsa -f ~/.ssh/id_rsa -q -N ""
+
+echo "StrictHostKeyChecking=accept-new" >>~/.ssh/config
+
+
+
+
+' >enablessh.txt
+
+
+echo \"echo '$(base64 ~/.ssh/id_rsa.pub)' | openssl base64 -d >>~/.ssh/authorized_keys\" >>enablessh.txt
+
+
+echo >>enablessh.txt
+echo >>enablessh.txt
+echo >>enablessh.txt
+
+
+$vmsh inputFile $osname enablessh.txt
+
+###############################################################
+
+
+ssh $osname 'cat ~/.ssh/id_rsa.pub' >id_rsa.pub
+
+ssh $osname  "/sbin/shutdown -p now"
+
+sleep 5
+
+###############################################################
+
+$vmsh shutdownVM $osname
+
+
+##############################################################
+
+
+
+
+ova="$VM_OVA_NAME.ova"
+
+$vmsh exportOVA $osname "$ova"
+
+cp ~/.ssh/id_rsa  mac.id_rsa
+
+zip -0 -s 2000m $ova.zip  $ova  id_rsa.pub  mac.id_rsa
 
 
 

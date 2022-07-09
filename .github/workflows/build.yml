@@ -16,8 +16,9 @@ jobs:
       with:
         node-version: '16'
         check-latest: true
-    - run: npm install
-    - run: node index.js
+    - run: |
+        chmod +x install.sh
+        ./install.sh conf/openbsd-6.9.conf
     - name: Get release
       if: "contains(github.ref, 'refs/tags/')"
       id: get_release
