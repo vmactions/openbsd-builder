@@ -157,7 +157,7 @@ echo "StrictHostKeyChecking=accept-new" >>~/.ssh/config
 ' >enablessh.txt
 
 
-echo \"echo '$(base64 ~/.ssh/id_rsa.pub)' | openssl base64 -d >>~/.ssh/authorized_keys\" >>enablessh.txt
+echo "echo '$(base64 ~/.ssh/id_rsa.pub)' | openssl base64 -d >>~/.ssh/authorized_keys" >>enablessh.txt
 
 
 echo >>enablessh.txt
