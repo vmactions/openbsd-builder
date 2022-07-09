@@ -13,8 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: |
-        chmod +x install.sh
-        ./install.sh conf/openbsd-6.9.conf
+        bash install.sh conf/openbsd-6.9.conf
     - name: Get release
       if: "contains(github.ref, 'refs/tags/')"
       id: get_release
