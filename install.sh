@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-
-
 set -e
 
 
@@ -94,6 +92,7 @@ sleep 2
 $vmsh  processOpts  $osname  "$opts"
 
 
+
 $vmsh shutdownVM $osname
 
 
@@ -140,7 +139,6 @@ sed -i "s/#PermitEmptyPasswords no/PermitEmptyPasswords yes/" /etc/ssh/sshd_conf
 sed -i "s/#PubkeyAuthentication no/PubkeyAuthentication yes/" /etc/ssh/sshd_config
 
 
-
 echo "AcceptEnv   *"  >> /etc/ssh/sshd_config
 
 mkdir -p ~/.ssh
@@ -172,6 +170,7 @@ $vmsh inputFile $osname enablessh.txt
 
 ssh $osname 'cat ~/.ssh/id_rsa.pub' >id_rsa.pub
 
+
 ssh $osname  "/sbin/shutdown -p now"
 
 sleep 5
@@ -184,17 +183,13 @@ $vmsh shutdownVM $osname
 ##############################################################
 
 
-
-
 ova="$VM_OVA_NAME.ova"
 
 $vmsh exportOVA $osname "$ova"
 
 cp ~/.ssh/id_rsa  mac.id_rsa
 
-zip -0 -s 2000m $ova.zip  $ova  id_rsa.pub  mac.id_rsa
-
-
+zip -0 -s 2000m $ova.zip  $ova id_rsa.pub mac.id_rsa
 
 
 
