@@ -73,7 +73,6 @@ Directory does not contain SHAZ56.sig | string yes; enter
 Location of sets | enter
 
 
-What timezone are you in  | enter
 
 
 
