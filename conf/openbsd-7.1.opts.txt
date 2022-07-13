@@ -38,6 +38,9 @@ Setup a user |  enter
 Allow root ssh login  |  string yes ; enter
 
 
+What timezone are you in |  enter
+
+
 Which disk is the root disk |  enter
 
 
