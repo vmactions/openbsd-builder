@@ -13,7 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: |
-        bash install.sh conf/openbsd-6.9.conf
+        bash install.sh conf/openbsd-7.1.conf
     - name: Get release
       if: "contains(github.ref, 'refs/tags/')"
       id: get_release
@@ -28,8 +28,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.get_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-        asset_path: ./openbsd-6.9.ova.zip
-        asset_name: openbsd-6.9.ova.zip
+        asset_path: ./openbsd-7.1.ova.zip
+        asset_name: openbsd-7.1.ova.zip
         asset_content_type: application/zip
 
 
