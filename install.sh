@@ -106,7 +106,7 @@ $vmsh startVM $osname
 
 
 
-waitForText "Installing: intel"
+waitForText "$VM_LOGIN_TAG"
 
 sleep 10
 
