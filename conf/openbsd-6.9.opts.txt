@@ -52,7 +52,9 @@ Pathname to the sets | enter
 
 Set name  |  string '-comp*' ; enter; sleep 1; 
 
+Set name  |  string '-xserv*' ; enter; sleep 1; 
 
+Set name  |  string '-xfont*' ; enter; sleep 1;
 
 Set name  |  string '-man*' ; enter; sleep 1; 
 
