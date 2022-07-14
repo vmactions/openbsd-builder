@@ -52,15 +52,12 @@ Pathname to the sets | enter
 
 Set name  |  string '-comp*' ; enter; sleep 1; 
 
-Set name  |  string '-xbase*' ; enter; sleep 1; 
 
-Set name  |  string '-xserv*' ; enter; sleep 1; 
 
 Set name  |  string '-man*' ; enter; sleep 1; 
 
-Set name  |  string '-game*' ; enter; sleep 1; 
+Set name  |  string '-game*' ; enter; sleep 1;  enter
 
-Set name  |  string '-xfont*' ; enter; sleep 1; enter
 
 
 
