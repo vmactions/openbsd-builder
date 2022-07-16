@@ -128,42 +128,18 @@ sleep 1
 inputKeys "string root ; enter ; string openbsd ; enter"
 
 
+cat enablessh.txt >enablessh.local
 
 
-echo '
-
-sed -i "s/PermitRootLogin no/PermitRootLogin yes/" /etc/ssh/sshd_config
-
-sed -i "s/#PermitEmptyPasswords no/PermitEmptyPasswords yes/" /etc/ssh/sshd_config
-
-sed -i "s/#PubkeyAuthentication no/PubkeyAuthentication yes/" /etc/ssh/sshd_config
+echo "echo '$(base64 ~/.ssh/id_rsa.pub)' | openssl base64 -d >>~/.ssh/authorized_keys" >>enablessh.local
 
 
-echo "AcceptEnv   *"  >> /etc/ssh/sshd_config
-
-mkdir -p ~/.ssh
-
-chmod -R 600 ~/.ssh
-
-ssh-keygen -t rsa -f ~/.ssh/id_rsa -q -N ""
-
-echo "StrictHostKeyChecking=accept-new" >>~/.ssh/config
+echo >>enablessh.local
+echo >>enablessh.local
+echo >>enablessh.local
 
 
-
-
-' >enablessh.txt
-
-
-echo "echo '$(base64 ~/.ssh/id_rsa.pub)' | openssl base64 -d >>~/.ssh/authorized_keys" >>enablessh.txt
-
-
-echo >>enablessh.txt
-echo >>enablessh.txt
-echo >>enablessh.txt
-
-
-$vmsh inputFile $osname enablessh.txt
+$vmsh inputFile $osname enablessh.local
 
 ###############################################################
 

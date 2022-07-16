@@ -19,7 +19,7 @@ autoconf  |  enter
 
 Which network interface do you wish to configure | enter
 
-DNS domain name |  string openbsd ; enter  | 3
+DNS domain name |  string openbsd ; enter  | 20
 
 
 Password for root  | string openbsd ; enter; sleep 1; string openbsd ; enter
