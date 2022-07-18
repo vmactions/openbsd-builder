@@ -131,7 +131,12 @@ inputKeys "string root ; enter ; string openbsd ; enter"
 cat enablessh.txt >enablessh.local
 
 
+#add ssh key twice, to avoid bugs.
 echo "echo '$(base64 ~/.ssh/id_rsa.pub)' | openssl base64 -d >>~/.ssh/authorized_keys" >>enablessh.local
+echo "" >>enablessh.local
+
+echo "echo '$(cat ~/.ssh/id_rsa.pub)' >>~/.ssh/authorized_keys" >>enablessh.local
+echo "" >>enablessh.local
 
 
 echo >>enablessh.local
@@ -141,13 +146,15 @@ echo >>enablessh.local
 
 $vmsh inputFile $osname enablessh.local
 
+
+
 ###############################################################
 
 
-ssh $osname 'cat ~/.ssh/id_rsa.pub' >id_rsa.pub
+ssh $osname 'cat ~/.ssh/id_rsa.pub' >$osname-$VM_RELEASE-id_rsa.pub
 
 
-ssh $osname  "/sbin/shutdown -p now"
+ssh $osname  "$VM_SHUTDOWN_CMD"
 
 sleep 5
 
@@ -159,13 +166,19 @@ $vmsh shutdownVM $osname
 ##############################################################
 
 
-ova="$VM_OVA_NAME.ova"
 
+
+ova="$osname-$VM_RELEASE.ova"
+
+
+echo "Exporting $ova"
 $vmsh exportOVA $osname "$ova"
 
-cp ~/.ssh/id_rsa  mac.id_rsa
+cp ~/.ssh/id_rsa  $osname-$VM_RELEASE-mac.id_rsa
 
-zip -0 -s 2000m $ova.zip  $ova id_rsa.pub mac.id_rsa
+
+ls -lah
+
 
 
 
