@@ -27,7 +27,9 @@ jobs:
     runs-on: macos-12
     steps:
     - uses: actions/checkout@v2
-    - run: |
+    - name: build
+      timeout-minutes: 40
+      run: |
         bash build.sh conf/openbsd-${{ matrix.os }}.conf
     - name: Upload Release Asset
       if: "contains(github.ref, 'refs/tags/')"
