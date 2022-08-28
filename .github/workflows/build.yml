@@ -25,6 +25,8 @@ jobs:
       matrix:
         os: ["6.9", "7.1"]
     runs-on: macos-12
+    env:
+      SEC_VBOX : ${{ secrets.SEC_VBOX }}
     steps:
     - uses: actions/checkout@v2
     - name: build
