@@ -15,7 +15,7 @@ on:
 
 
 concurrency: 
-  group: ${{ github.workflow }}
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 
@@ -28,9 +28,13 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: build
-      timeout-minutes: 40
-      run: |
-        bash build.sh conf/openbsd-${{ matrix.os }}.conf
+      uses: nick-fields/retry@v2
+      with:
+        timeout_minutes: 35
+        max_attempts: 10
+        retry_on: timeout
+        command: bash build.sh conf/openbsd-${{ matrix.os }}.conf
+
     - name: Upload Release Asset
       if: "contains(github.ref, 'refs/tags/')"
       id: upload-release-asset
