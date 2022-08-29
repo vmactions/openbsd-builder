@@ -34,7 +34,6 @@ jobs:
       with:
         timeout_minutes: 35
         max_attempts: 10
-        retry_on: timeout
         command: bash build.sh conf/openbsd-${{ matrix.os }}.conf
 
     - name: Upload Release Asset
