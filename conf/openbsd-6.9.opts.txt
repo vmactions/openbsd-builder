@@ -1,7 +1,7 @@
 
 
 
-Install, (Upgrade, (A)utoinstall  |  string i  ; enter ; sleep 1 ; enter
+Install, (Upgrade,  |  string i  ; enter ; sleep 1 ; enter
 
 
 
