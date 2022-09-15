@@ -153,6 +153,7 @@ echo 'StrictHostKeyChecking=accept-new' >.ssh/config
 echo "Host host" >>.ssh/config
 echo "     HostName  10.0.2.2" >>.ssh/config
 echo "     User runner" >>.ssh/config
+echo "     ServerAliveInterval 1" >>.ssh/config
 
 EOF
 
@@ -161,12 +162,17 @@ EOF
 
 
 if [ -e "hooks/postBuild.sh" ]; then
-  ssh $osname <"hooks/postBuild.sh"
+  ssh $osname sh<"hooks/postBuild.sh"
 fi
 
 
 ssh $osname 'cat ~/.ssh/id_rsa.pub' >$osname-$VM_RELEASE-id_rsa.pub
 
+
+if [ "$VM_PRE_INSTALL_PKGS" ]; then
+  echo "$VM_INSTALL_CMD $VM_PRE_INSTALL_PKGS"
+  ssh $osname sh <<<"$VM_INSTALL_CMD $VM_PRE_INSTALL_PKGS"
+fi
 
 ssh $osname  "$VM_SHUTDOWN_CMD"
 
