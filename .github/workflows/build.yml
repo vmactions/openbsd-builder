@@ -25,7 +25,7 @@ jobs:
     timeout-minutes: 30
     strategy:
       matrix:
-        os: ["6.9", "7.1"]
+        os: ["7.1", "7.2"]
     runs-on: macos-12
     env:
       SEC_VBOX : ${{ secrets.SEC_VBOX }}

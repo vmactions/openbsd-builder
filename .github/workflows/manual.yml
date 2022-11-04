@@ -7,7 +7,7 @@ jobs:
   build:
     runs-on: macos-12
     env:
-      RELEASE: "6.9"
+      RELEASE: "7.2"
       DEBUG: 1
       VM_OS_NAME: openbsd
       NGROK_TOKEN : ${{ secrets.NGROK_TOKEN }}
