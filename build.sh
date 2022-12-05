@@ -72,6 +72,8 @@ fi
 
 $vmsh createVM  $VM_ISO_LINK $osname $ostype $sshport
 
+# Enable multi-processor so that the MP kernel gets installed.
+$vmsh setCPU $osname 2
 
 
 $vmsh startWeb $osname
