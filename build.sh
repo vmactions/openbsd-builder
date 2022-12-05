@@ -75,17 +75,13 @@ $vmsh createVM  $VM_ISO_LINK $osname $ostype $sshport
 # Enable multi-processor so that the MP kernel gets installed.
 $vmsh setCPU $osname 2
 
-
-$vmsh startWeb $osname
-
-
-
-$vmsh startCF
-
-
-_sleep=20
-echo "Sleep $_sleep seconds, please open the link in your browser."
-sleep $_sleep
+if [ -n "$DEBUG" ]; then
+    $vmsh startWeb $osname
+    $vmsh startCF
+    _sleep=20
+    echo "Sleep $_sleep seconds, please open the link in your browser."
+    sleep $_sleep
+fi
 
 $vmsh startVM $osname
 
