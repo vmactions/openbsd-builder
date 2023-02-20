@@ -143,7 +143,8 @@ echo "" >>enablessh.local
 
 
 echo >>enablessh.local
-echo >>enablessh.local
+echo "chmod 600 ~/.ssh/authorized_keys">>enablessh.local
+echo "exit">>enablessh.local
 echo >>enablessh.local
 
 
