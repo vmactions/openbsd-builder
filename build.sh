@@ -165,6 +165,8 @@ EOF
 
 
 if [ -e "hooks/postBuild.sh" ]; then
+  echo "hooks/postBuild.sh"
+  cat "hooks/postBuild.sh"
   ssh $osname sh<"hooks/postBuild.sh"
 fi
 
