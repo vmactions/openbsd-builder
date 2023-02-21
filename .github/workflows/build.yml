@@ -22,7 +22,7 @@ concurrency:
 
 jobs:
   build:
-    timeout-minutes: 30
+    timeout-minutes: 60
     strategy:
       matrix:
         os: ["7.1", "7.2"]
@@ -34,7 +34,7 @@ jobs:
     - name: build
       uses: nick-fields/retry@v2
       with:
-        timeout_minutes: 35
+        timeout_minutes: 60
         max_attempts: 10
         command: bash build.sh conf/openbsd-${{ matrix.os }}.conf
 
