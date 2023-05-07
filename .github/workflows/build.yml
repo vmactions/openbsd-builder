@@ -25,12 +25,12 @@ jobs:
     timeout-minutes: 60
     strategy:
       matrix:
-        os: ["7.1", "7.2"]
+        os: ["7.3"]
     runs-on: macos-12
     env:
       SEC_VBOX : ${{ secrets.SEC_VBOX }}
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: build
       uses: nick-fields/retry@v2
       with:
