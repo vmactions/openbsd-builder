@@ -1,0 +1,91 @@
+
+
+
+Install, (Upgrade,  |  string i  ; enter ; sleep 1 ; enter
+
+
+
+System hostname     |  string openbsd ; enter
+
+
+Network interface to configure  |  enter
+
+
+IPv4 address for  |  enter
+
+
+autoconf  |  enter
+
+
+Which network interface do you wish to configure | enter
+
+DNS domain name |  string openbsd ; enter  | 20
+
+
+Password for root  | string openbsd ; enter; sleep 1; string openbsd ; enter
+
+
+Start sshd  |  enter
+
+Do you expect to run the X Window System | string no; enter
+
+
+
+
+Setup a user |  enter
+
+
+Allow root ssh login  |  string yes ; enter
+
+
+What timezone are you in |  enter
+
+
+Which disk is the root disk |  enter
+
+
+whole disk | enter
+
+layout | enter
+
+Location of sets |  enter
+
+Pathname to the sets | enter
+
+
+
+Set name  |  string '-xserv*' ; enter; sleep 1; 
+
+Set name  |  string '-xfont*' ; enter; sleep 1;
+
+Set name  |  string '-man*' ; enter; sleep 1; 
+
+Set name  |  string '-game*' ; enter; sleep 1;  enter
+
+
+
+
+Directory does not contain SHAZ56.sig | string yes; enter
+
+
+Location of sets | enter
+
+
+
+
+
+Your OpenBSD install has been successfully completed | string h; enter
+
+
+
+
+
+
+
+
+
+
+
+
+
+
