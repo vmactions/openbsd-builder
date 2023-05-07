@@ -17,7 +17,7 @@ IPv4 address for  |  enter
 autoconf  |  enter
 
 
-Which network interface do you wish to configure | enter
+Network interface to configure | enter
 
 DNS domain name |  string openbsd ; enter  | 20
 
