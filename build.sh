@@ -92,7 +92,17 @@ $vmsh startVM $osname
 sleep 2
 
 
-$vmsh  processOpts  $osname  "$opts"
+waitForText "$VM_LOGIN_TAG"
+
+waitForText "Install, (Upgrade,"
+
+$vmsh string s
+$vmsh enter
+
+$vmsh uploadFile $osname $VM_OPTS "/tmp/i/install.resp"
+
+$vmsh string autoinstall
+$vmsh enter
 
 
 
