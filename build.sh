@@ -94,7 +94,7 @@ sleep 2
 
 waitForText "$VM_LOGIN_TAG"
 
-waitForText "Install, (Upgrade,"
+waitForText "Install, ("
 
 $vmsh string s
 $vmsh enter
