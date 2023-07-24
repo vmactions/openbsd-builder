@@ -99,11 +99,15 @@ waitForText "Install, ("
 $vmsh string s
 $vmsh enter
 
-$vmsh uploadFile $osname $VM_OPTS "/tmp/i/install.resp"
-
 $vmsh string autoinstall
 $vmsh enter
 
+waitForText "Response file location"
+$vmsh string "http://10.0.2.2:8000/$VM_OPTS"
+$vmsh enter
+
+
+waitForText "Your OpenBSD install has been successfully completed"
 
 
 $vmsh shutdownVM $osname
