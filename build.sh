@@ -114,7 +114,7 @@ $vmsh enter
 
 
 
-waitForText "Your OpenBSD install has been successfully completed"
+waitForText "Making all device nodes... done"
 
 
 $vmsh shutdownVM $osname
