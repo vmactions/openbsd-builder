@@ -28,6 +28,10 @@ jobs:
         os: ["7.3"]
     runs-on: macos-12
     env:
+      RELEASE: "${{ matrix.os }}"
+      DEBUG: 1
+      VM_OS_NAME: openbsd
+      NGROK_TOKEN : ${{ secrets.NGROK_TOKEN }}
       SEC_VBOX : ${{ secrets.SEC_VBOX }}
     steps:
     - uses: actions/checkout@v3
