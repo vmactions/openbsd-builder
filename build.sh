@@ -150,16 +150,15 @@ sleep 1
 inputKeys "string root ; enter ; string openbsd ; enter"
 
 
+
+$vmsh string "mkdir -p /root/.ssh/"
+$vmsh enter
+
+$vmsh uploadFile $osname ~/.ssh/id_rsa.pub /root/.ssh/authorized_keys
+
+
+
 cat enablessh.txt >enablessh.local
-
-
-#add ssh key twice, to avoid bugs.
-echo "echo '$(base64 ~/.ssh/id_rsa.pub)' | openssl base64 -d >>~/.ssh/authorized_keys" >>enablessh.local
-echo "" >>enablessh.local
-
-echo "echo '$(cat ~/.ssh/id_rsa.pub)' >>~/.ssh/authorized_keys" >>enablessh.local
-echo "" >>enablessh.local
-
 
 echo >>enablessh.local
 echo "chmod 600 ~/.ssh/authorized_keys">>enablessh.local
