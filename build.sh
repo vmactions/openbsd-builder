@@ -96,11 +96,9 @@ waitForText "$VM_LOGIN_TAG"
 
 waitForText "Install, ("
 
-$vmsh string s
+$vmsh string a
 $vmsh enter
 
-$vmsh string autoinstall
-$vmsh enter
 
 waitForText "Response file location"
 $vmsh string "http://10.0.2.2:8000/$VM_OPTS"
@@ -108,13 +106,9 @@ $vmsh enter
 
 
 
-waitForText "Install or"
-$vmsh string i
+waitForText "Your OpenBSD install has been successfully completed"
+$vmsh string h
 $vmsh enter
-
-
-
-waitForText "Making all device nodes... done"
 
 
 $vmsh shutdownVM $osname
