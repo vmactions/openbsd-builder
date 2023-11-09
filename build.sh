@@ -102,7 +102,7 @@ $vmsh string h
 $vmsh enter
 
 
-$vmsh shutdownVM $osname
+sleep 5
 
 
 
