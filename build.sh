@@ -87,7 +87,7 @@ $vmsh enter
 
 
 waitForText "Response file location"
-$vmsh string "http://10.0.2.2:8000/$VM_OPTS"
+$vmsh string "http://192.168.122.1:8000/$VM_OPTS"
 $vmsh enter
 
 waitForText "Install or"
