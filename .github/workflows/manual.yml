@@ -5,7 +5,7 @@ on:
 
 jobs:
   build:
-    runs-on: macos-12
+    runs-on: ubuntu-22.04
     env:
       RELEASE: "7.3"
       DEBUG: 1
@@ -14,12 +14,17 @@ jobs:
       SEC_VBOX : ${{ secrets.SEC_VBOX }}
     steps:
     - uses: actions/checkout@v3
+    - uses: vmactions/cf-tunnel@v0
+      id: tunnel
+      with:
+        protocol: http
+        port: 8000
     - name: Run establish a ngrok tunnel
       id: test
       uses: vmactions/ngrok-tunnel@v0.0.1
       with:
         protocol: tcp
-        port: 3390
+        port: 5900
     - name: Sleep
       run: |
         for i in $(seq 1 10) ; do echo $i; sleep 1; done

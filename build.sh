@@ -60,7 +60,7 @@ fi
 chmod +x "$vmsh"
 
 
-$vmsh addSSHHost  $osname $sshport
+
 
 
 
@@ -78,14 +78,6 @@ $vmsh setCPU $osname 2
 
 $vmsh startWeb $osname
 
-
-
-$vmsh startCF
-
-
-_sleep=20
-echo "Sleep $_sleep seconds, please open the link in your browser."
-sleep $_sleep
 
 $vmsh startVM $osname
 
@@ -118,7 +110,6 @@ $vmsh enter
 $vmsh shutdownVM $osname
 
 
-$vmsh detachISO $osname
 
 $vmsh startVM $osname
 
@@ -154,6 +145,13 @@ inputKeys "string root ; enter ; string openbsd ; enter"
 $vmsh string "mkdir -p /root/.ssh/"
 $vmsh enter
 
+
+
+if [ ! -e ~/.ssh/id_rsa ] ; then 
+  ssh-keygen -f  ~/.ssh/id_rsa -q -N "" 
+fi
+
+
 $vmsh uploadFile $osname ~/.ssh/id_rsa.pub /root/.ssh/authorized_keys
 
 
@@ -168,11 +166,15 @@ echo >>enablessh.local
 
 $vmsh inputFile $osname enablessh.local
 
+
+$vmsh addSSHHost  $osname
+
+
 ssh $osname sh <<EOF
 echo 'StrictHostKeyChecking=accept-new' >.ssh/config
 
 echo "Host host" >>.ssh/config
-echo "     HostName  10.0.2.2" >>.ssh/config
+echo "     HostName  192.168.122.1" >>.ssh/config
 echo "     User runner" >>.ssh/config
 echo "     ServerAliveInterval 1" >>.ssh/config
 
@@ -211,13 +213,13 @@ $vmsh shutdownVM $osname
 
 
 
-ova="$osname-$VM_RELEASE.ova"
+ova="$osname-$VM_RELEASE.qcow2"
 
 
 echo "Exporting $ova"
 $vmsh exportOVA $osname "$ova"
 
-cp ~/.ssh/id_rsa  $osname-$VM_RELEASE-mac.id_rsa
+cp ~/.ssh/id_rsa  $osname-$VM_RELEASE-host.id_rsa
 
 
 ls -lah
