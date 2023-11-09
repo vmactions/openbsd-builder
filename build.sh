@@ -87,13 +87,7 @@ $vmsh enter
 
 
 waitForText "Response file location"
-
-$vmsh string "http"
-vncdotool key shift-semicolon
-$vmsh string "//192.168.122.1"
-vncdotool key shift-semicolon
-$vmsh string"8000/$VM_OPTS"
-
+$vmsh string "http://192.168.122.1:8000/$VM_OPTS"
 $vmsh enter
 
 waitForText "Install or"

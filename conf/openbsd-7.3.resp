@@ -1,5 +1,5 @@
 System hostname = openbsd
-Network interface to configure = done
+Network interface to configure = vio0
 IPv4 address for vio0 = autoconf
 IPv6 address for vio0 = none
 Network interface to configure = done
