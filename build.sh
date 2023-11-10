@@ -78,8 +78,6 @@ $vmsh startWeb $osname
 
 
 
-waitForText "$VM_LOGIN_TAG"
-
 waitForText "nstall, ("
 
 $vmsh string a
