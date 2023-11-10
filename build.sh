@@ -60,7 +60,7 @@ fi
 chmod +x "$vmsh"
 
 
-$vmsh addSSHHost  $osname $sshport
+
 
 
 
@@ -72,34 +72,40 @@ fi
 
 $vmsh createVM  $VM_ISO_LINK $osname $ostype $sshport
 
-# Enable multi-processor so that the MP kernel gets installed.
-$vmsh setCPU $osname 2
 
 
 $vmsh startWeb $osname
 
 
 
-$vmsh startCF
+waitForText "$VM_LOGIN_TAG"
+
+waitForText "nstall, ("
+
+$vmsh string a
+$vmsh enter
 
 
-_sleep=20
-echo "Sleep $_sleep seconds, please open the link in your browser."
-sleep $_sleep
-
-$vmsh startVM $osname
+waitForText "Response file location"
+$vmsh string "http://192.168.122.1:8000/$VM_OPTS"
+$vmsh enter
 
 sleep 2
+waitForText "nstall or"
+
+$vmsh string i
+$vmsh enter
 
 
-$vmsh  processOpts  $osname  "$opts"
+
+while $vmsh isRunning $osname; do
+  sleep 5
+done
 
 
+sleep 5
 
-$vmsh shutdownVM $osname
 
-
-$vmsh detachISO $osname
 
 $vmsh startVM $osname
 
@@ -131,16 +137,22 @@ sleep 1
 inputKeys "string root ; enter ; string openbsd ; enter"
 
 
+
+$vmsh string "mkdir -p /root/.ssh/"
+$vmsh enter
+
+
+
+if [ ! -e ~/.ssh/id_rsa ] ; then 
+  ssh-keygen -f  ~/.ssh/id_rsa -q -N "" 
+fi
+
+
+$vmsh uploadFile $osname ~/.ssh/id_rsa.pub /root/.ssh/authorized_keys
+
+
+
 cat enablessh.txt >enablessh.local
-
-
-#add ssh key twice, to avoid bugs.
-echo "echo '$(base64 ~/.ssh/id_rsa.pub)' | openssl base64 -d >>~/.ssh/authorized_keys" >>enablessh.local
-echo "" >>enablessh.local
-
-echo "echo '$(cat ~/.ssh/id_rsa.pub)' >>~/.ssh/authorized_keys" >>enablessh.local
-echo "" >>enablessh.local
-
 
 echo >>enablessh.local
 echo "chmod 600 ~/.ssh/authorized_keys">>enablessh.local
@@ -150,11 +162,15 @@ echo >>enablessh.local
 
 $vmsh inputFile $osname enablessh.local
 
+
+$vmsh addSSHHost  $osname
+
+
 ssh $osname sh <<EOF
 echo 'StrictHostKeyChecking=accept-new' >.ssh/config
 
 echo "Host host" >>.ssh/config
-echo "     HostName  10.0.2.2" >>.ssh/config
+echo "     HostName  192.168.122.1" >>.ssh/config
 echo "     User runner" >>.ssh/config
 echo "     ServerAliveInterval 1" >>.ssh/config
 
@@ -185,7 +201,9 @@ sleep 5
 
 ###############################################################
 
-$vmsh shutdownVM $osname
+while $vmsh isRunning $osname; do
+  sleep 5
+done
 
 
 ##############################################################
@@ -193,13 +211,13 @@ $vmsh shutdownVM $osname
 
 
 
-ova="$osname-$VM_RELEASE.ova"
+ova="$osname-$VM_RELEASE.qcow2"
 
 
 echo "Exporting $ova"
 $vmsh exportOVA $osname "$ova"
 
-cp ~/.ssh/id_rsa  $osname-$VM_RELEASE-mac.id_rsa
+cp ~/.ssh/id_rsa  $osname-$VM_RELEASE-host.id_rsa
 
 
 ls -lah

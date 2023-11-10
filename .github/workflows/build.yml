@@ -22,22 +22,21 @@ concurrency:
 
 jobs:
   build:
-    timeout-minutes: 60
     strategy:
       matrix:
         os: ["7.3"]
-    runs-on: macos-12
+    runs-on: ubuntu-22.04
     env:
       SEC_VBOX : ${{ secrets.SEC_VBOX }}
     steps:
     - uses: actions/checkout@v3
-    - name: build
-      uses: nick-fields/retry@v2
+    - uses: vmactions/cf-tunnel@v0
+      id: tunnel
       with:
-        timeout_minutes: 60
-        max_attempts: 10
-        command: bash build.sh conf/openbsd-${{ matrix.os }}.conf
-
+        protocol: http
+        port: 8000
+    - run: |
+        bash build.sh conf/openbsd-${{ matrix.os }}.conf
     - name: Upload Release Asset
       if: "contains(github.ref, 'refs/tags/')"
       id: upload-release-asset
@@ -46,8 +45,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         files: |
-          openbsd-${{ matrix.os }}.ova
+          openbsd-${{ matrix.os }}.qcow2.xz
           openbsd-${{ matrix.os }}-id_rsa.pub
-          openbsd-${{ matrix.os }}-mac.id_rsa
+          openbsd-${{ matrix.os }}-host.id_rsa
 
 
