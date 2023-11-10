@@ -97,9 +97,10 @@ $vmsh string i
 $vmsh enter
 
 
-waitForText "Your OpenBSD install has been successfully completed"
-$vmsh string h
-$vmsh enter
+
+while $vmsh isRunning $osname; do
+  sleep 5
+done
 
 
 sleep 5
