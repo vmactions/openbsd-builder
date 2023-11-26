@@ -13,11 +13,11 @@ Which disk is the root disk = sd0
 Encrypt the root disk = no
 Use (W)hole disk MBR, whole disk (G)PT or (E)dit = whole
 Use (A)uto layout, (E)dit auto layout, or create (C)ustom layout = a
-Location of sets = http
-HTTP proxy URL = none
-HTTP Server = cdn.openbsd.org
-Server directory = pub/OpenBSD/7.4/amd64
+Location of sets = cd0
+Pathname to the sets = 7.4/amd64
+Set name(s) = -game*
 Set name(s) = done
+Directory does not contain SHA256.sig. Continue without verification = yes
 Location of sets = done
 What timezone are you in = UTC
 
