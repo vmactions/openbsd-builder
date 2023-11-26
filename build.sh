@@ -158,6 +158,8 @@ echo >>enablessh.local
 $vmsh inputFile $osname enablessh.local
 
 
+###############################################################
+
 $vmsh addSSHHost  $osname
 
 
@@ -227,9 +229,9 @@ if [ -z "$VM_RSYNC_PKG$VM_SSHFS_PKG" ]; then
 else
   $vmsh startVM $osname
 
-  waitForText "$VM_LOGIN_TAG"
+  waitForText "penBSD/amd64"
 
-  sleep 10
+  sleep 20
 
   waitForText "logi"
 
