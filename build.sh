@@ -221,6 +221,22 @@ cp ~/.ssh/id_rsa  $osname-$VM_RELEASE-host.id_rsa
 ls -lah
 
 
+##############################################################
 
+echo "Checking the packages: $VM_RSYNC_PKG $VM_SSHFS_PKG"
+
+if [ -z "$VM_RSYNC_PKG$VM_SSHFS_PKG" ]; then
+  echo "skip"
+else
+  $vmsh startVM $osname
+
+  waitForText "$VM_LOGIN_TAG"
+
+  sleep 10
+
+  waitForText "logi"
+
+  ssh $osname sh <<<"$VM_INSTALL_CMD $VM_RSYNC_PKG $VM_SSHFS_PKG"
+fi
 
 
