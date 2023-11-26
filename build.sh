@@ -61,7 +61,7 @@ chmod +x "$vmsh"
 
 
 
-
+$vmsh startWeb $osname
 
 
 $vmsh setup 
@@ -72,9 +72,6 @@ fi
 
 $vmsh createVM  $VM_ISO_LINK $osname $ostype $sshport
 
-
-
-$vmsh startWeb $osname
 
 
 
