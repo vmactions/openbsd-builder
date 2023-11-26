@@ -7,7 +7,7 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     env:
-      RELEASE: "7.3"
+      RELEASE: "7.4"
       DEBUG: 1
       VM_OS_NAME: openbsd
       NGROK_TOKEN : ${{ secrets.NGROK_TOKEN }}
