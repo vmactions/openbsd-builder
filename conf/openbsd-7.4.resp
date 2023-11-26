@@ -15,7 +15,6 @@ Use (W)hole disk MBR, whole disk (G)PT or (E)dit = whole
 Use (A)uto layout, (E)dit auto layout, or create (C)ustom layout = a
 Location of sets = cd0
 Pathname to the sets = 7.4/amd64
-Set name(s) = -game*
 Set name(s) = done
 Directory does not contain SHA256.sig. Continue without verification = yes
 Location of sets = done
