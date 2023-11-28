@@ -29,7 +29,7 @@ vmsh="$VM_VBOX"
 
 
 export VM_OS_NAME
-
+export VM_RELEASE
 
 
 ##############################################################
@@ -110,7 +110,7 @@ $vmsh startVM $osname
 
 
 
-waitForText "$VM_LOGIN_TAG"
+waitForText "$VM_LOGIN_TAG" 30
 
 sleep 10
 
