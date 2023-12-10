@@ -1,2 +1,4 @@
-# openbsd-builder
-Builder for https://github.com/vmactions/openbsd-vm
+
+v0.9.8
+
+
