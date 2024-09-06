@@ -2,7 +2,7 @@
 
 [![Build](https://github.com/vmactions/openbsd-builder/actions/workflows/build.yml/badge.svg)](https://github.com/vmactions/openbsd-builder/actions/workflows/build.yml)
 
-Latest: v1.0.1
+Latest: v1.0.2
 
 
 The image builder for [openbsd-vm](https://github.com/vmactions/openbsd-vm)
