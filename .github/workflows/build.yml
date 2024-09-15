@@ -61,7 +61,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         files: |
-          openbsd-${{ matrix.os }}.qcow2*
+          openbsd-${{ matrix.os }}.qcow2.zst*
           openbsd-${{ matrix.os }}-id_rsa.pub
           openbsd-${{ matrix.os }}-host.id_rsa
 
