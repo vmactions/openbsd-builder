@@ -223,7 +223,15 @@ if [ -e "hooks/postBuild.sh" ]; then
   restart_and_wait
 fi
 
-ssh $osname 'cat ~/.ssh/id_rsa.pub' >$osname-$VM_RELEASE-id_rsa.pub
+
+output="$osname-$VM_RELEASE"
+if [ "$VM_ARCH" ]; then
+  output="$osname-$VM_RELEASE-$VM_ARCH"
+fi
+
+ssh $osname 'cat ~/.ssh/id_rsa.pub' >$output-id_rsa.pub
+
+
 
 #upload reboot.sh
 if [ -e "hooks/reboot.sh" ]; then
@@ -283,11 +291,13 @@ ls -lah
 echo "free space:"
 df -h
 
-ova="$osname-$VM_RELEASE.qcow2"
+
+
+ova="$output.qcow2"
 echo "Exporting $ova"
 $vmsh exportOVA $osname "$ova"
 
-cp ~/.ssh/id_rsa  $osname-$VM_RELEASE-host.id_rsa
+cp ~/.ssh/id_rsa  $output-host.id_rsa
 
 echo "contents after export:"
 ls -lah
@@ -300,7 +310,7 @@ echo "Checking the packages: $VM_RSYNC_PKG $VM_SSHFS_PKG"
 if [ -z "$VM_RSYNC_PKG$VM_SSHFS_PKG" ]; then
   echo "skip"
 else
-  $vmsh addSSHAuthorizedKeys $osname-$VM_RELEASE-id_rsa.pub
+  $vmsh addSSHAuthorizedKeys $output-id_rsa.pub
   $vmsh startVM $osname
   $vmsh waitForVMReady $osname
   if [ "$VM_RSYNC_PKG" ]; then
