@@ -107,7 +107,7 @@ if [ "$VM_ISO_LINK" ]; then
   fi
 
   while $vmsh isRunning $osname; do
-    sleep 5
+    sleep 10
   done
   if [ "$VM_USE_CONSOLE_BUILD" ]; then
     $vmsh closeConsole "$osname"
