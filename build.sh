@@ -181,6 +181,9 @@ restart_and_wait() {
 
 #start the installed vm, and initialize the ssh access:
 
+#disable console, it will use the vnc console from now on
+export VM_USE_CONSOLE_BUILD=""
+
 start_and_wait
 
 inputKeys "string root; enter; sleep 1;"
