@@ -34,7 +34,7 @@ export VM_OCR
 export VM_DISK
 export VM_ARCH
 export VM_USE_CONSOLE_BUILD
-
+export VM_USE_CONSOLE_BUILD_SSH
 
 
 ##############################################################
@@ -113,8 +113,11 @@ if [ "$VM_ISO_LINK" ]; then
     $vmsh closeConsole "$osname"
   fi
 
-  #disable console, it will use the vnc console from now on, for OpenBSD
-  export VM_USE_CONSOLE_BUILD=""
+  #for openbsd 7.3/4
+  if [ -z "$VM_USE_CONSOLE_BUILD_SSH" ]; then
+    #disable console, it will use the vnc console from now on, for OpenBSD
+    export VM_USE_CONSOLE_BUILD=""
+  fi
 
 elif [ "$VM_VHD_LINK" ]; then
   #if the vm disk is already provided FreeBSD, just import it.
