@@ -15,3 +15,20 @@ waitForText "nstall or"
 $vmsh string i
 $vmsh enter
 
+if [ "$VM_ARCH" = "aarch64" ] && [ "$VM_USE_CONSOLE_BUILD" ] && [ "$VM_USE_CONSOLE_BUILD_SSH" ]; then
+  #for openbsd 7.3/4,  it will reboot after the install.
+  #but for 7.5/6, it will just shutdown after install,  so we force it to shutdown for 7.3/4 here.
+  waitForText "Your OpenBSD install has been successfully completed"
+  if $vmsh isRunning $VM_OS_NAME; then
+    if ! $vmsh shutdownVM $VM_OS_NAME; then
+      echo "shutdown error"
+    fi
+    if ! $vmsh destroyVM $VM_OS_NAME; then
+      echo "destroyVM error"
+    fi
+  fi
+fi
+
+
+
+
