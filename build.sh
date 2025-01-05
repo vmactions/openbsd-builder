@@ -224,6 +224,7 @@ echo >>enablessh.local
 
 $vmsh inputFile $osname enablessh.local
 
+$vmsh screenText $osname
 
 
 export VM_USE_CONSOLE_BUILD=""
