@@ -18,6 +18,7 @@ HTTP proxy URL = none
 HTTP Server = cdn.openbsd.org
 Server directory = pub/OpenBSD/7.3/arm64
 Set name(s) = done
+Cannot determine prefetch area. Continue without verification = yes
 Location of sets = done
 What timezone are you in = UTC
 
