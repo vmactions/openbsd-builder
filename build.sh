@@ -113,10 +113,8 @@ if [ "$VM_ISO_LINK" ]; then
     $vmsh closeConsole "$osname"
   fi
 
-  #for openbsd 7.3/4
-  if [ -z "$VM_USE_CONSOLE_BUILD_SSH" ]; then
-    #disable console, it will use the vnc console from now on, for OpenBSD
-    export VM_USE_CONSOLE_BUILD=""
+  if [[ "$VM_ISO_LINK" == *"img" ]]; then
+    $vmsh detachIMG "$osname"
   fi
 
 elif [ "$VM_VHD_LINK" ]; then
@@ -189,6 +187,9 @@ restart_and_wait() {
 #start the installed vm, and initialize the ssh access:
 
 
+if [ -z "$VM_USE_CONSOLE_BUILD_SSH" ]; then
+  export VM_USE_CONSOLE_BUILD=""
+fi
 
 start_and_wait
 
@@ -224,7 +225,7 @@ echo >>enablessh.local
 $vmsh inputFile $osname enablessh.local
 
 
-#disable console, it will use the vnc console from now on for FreeBSD
+
 export VM_USE_CONSOLE_BUILD=""
 
 
