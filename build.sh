@@ -42,7 +42,8 @@ export VM_USE_CONSOLE_BUILD_SSH
 
 waitForText() {
   _text="$1"
-  $vmsh waitForText $osname "$_text"
+  _sec="$2"
+  $vmsh waitForText $osname "$_text" "$_sec"
 }
 
 #keys splitted by ;
