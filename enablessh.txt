@@ -13,8 +13,15 @@ mkdir -p ~/.ssh
 
 chmod -R 600 ~/.ssh
 
+rm -f ~/.ssh/id_rsa
+
 ssh-keygen -t rsa -f ~/.ssh/id_rsa -q -N ""
 
 echo "StrictHostKeyChecking=accept-new" >>~/.ssh/config
+
+
+
+
+
 
 
