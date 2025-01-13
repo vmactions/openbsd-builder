@@ -7,7 +7,7 @@ pwd_mkdb -p /etc/master.passwd
 
 
 #enable autologin with root in the console
-echo "su - root" >>/etc/rc.local
+#echo "su - root" >>/etc/rc.local
 
 
 
