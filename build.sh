@@ -269,6 +269,8 @@ fi
 
 $vmsh addSSHHost  $osname
 
+echo "Sleep for the sshd to restart"
+sleep 30
 
 ssh $osname sh <<EOF
 echo 'StrictHostKeyChecking=no' >.ssh/config
