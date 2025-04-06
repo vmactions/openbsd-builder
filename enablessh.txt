@@ -11,8 +11,6 @@ echo 'AcceptEnv   *'  >> /etc/ssh/sshd_config
 
 rcctl restart sshd
 
-#wait for the sshd server to run
-sleep 30
 
 mkdir -p ~/.ssh
 
