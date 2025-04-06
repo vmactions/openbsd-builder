@@ -270,7 +270,19 @@ fi
 $vmsh addSSHHost  $osname
 
 echo "Sleep for the sshd to restart"
-sleep 30
+sleep 10
+
+_retry=0
+while ! timeout 2 ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR $osname exit >/dev/null 2>&1; do
+  echo "ssh is not ready, just wait."
+  sleep 10
+  _retry=$(($_retry + 1))
+  if [ $_retry -gt 10 ]; then
+    echo "ssh is failed."
+    exit 1
+  fi
+done
+
 
 ssh $osname sh <<EOF
 echo 'StrictHostKeyChecking=no' >.ssh/config
