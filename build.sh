@@ -391,6 +391,13 @@ else
   if [ "$VM_SSHFS_PKG" ]; then
     ssh $osname sh <<<"$VM_INSTALL_CMD $VM_SSHFS_PKG"
   fi
+  if ssh $osname sh -c env | grep GITHUB_ ; then
+    echo "SendEnv OK"
+  else
+    echo "SendEnv is not working"
+    exit 1
+  fi
+
 fi
 
 echo "Build finished."
