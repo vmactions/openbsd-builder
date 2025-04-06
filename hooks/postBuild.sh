@@ -15,12 +15,6 @@ sleep 10
 syspatch
 
 
-if uname -a | grep "7.5 GENERIC.MP#3 arm64"; then
-  echo 'AcceptEnv *' >>/etc/ssh/sshd_config
-  rcctl restart sshd
-fi
-
-
 ret="$?"
 #0 means ok
 #2 means no update

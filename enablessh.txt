@@ -7,7 +7,9 @@ sed -i "s/#PermitEmptyPasswords no/PermitEmptyPasswords yes/" /etc/ssh/sshd_conf
 sed -i "s/#PubkeyAuthentication no/PubkeyAuthentication yes/" /etc/ssh/sshd_config
 
 
-echo "AcceptEnv   *"  >> /etc/ssh/sshd_config
+echo 'AcceptEnv   *'  >> /etc/ssh/sshd_config
+
+rcctl restart sshd
 
 mkdir -p ~/.ssh
 
