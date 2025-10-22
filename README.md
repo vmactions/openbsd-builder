@@ -2,7 +2,7 @@
 
 [![Build](https://github.com/vmactions/openbsd-builder/actions/workflows/build.yml/badge.svg)](https://github.com/vmactions/openbsd-builder/actions/workflows/build.yml)
 
-Latest: v1.1.4
+Latest: v1.1.5
 
 
 The image builder for [openbsd-vm](https://github.com/vmactions/openbsd-vm)
@@ -20,6 +20,6 @@ How to use:
 
     Just clone the repo. and run:
     ```bash
-    bash build.sh conf/openbsd-7.7.conf
+    bash build.sh conf/openbsd-7.8.conf
     ```
    
