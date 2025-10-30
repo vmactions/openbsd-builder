@@ -436,6 +436,19 @@ else
     echo "SendEnv OK"
   else
     echo "SendEnv is not working"
+    echo "===============env===="
+    env
+    echo "=============ssh env=="
+    ssh $osname sh -c env
+    ls -lah
+    ls -lah ~
+    ls -lah ~/.ssh
+    if [ -e ~/.ssh/config ]; then
+      cat ~/.ssh/config
+    fi
+    if [ -e ~/.ssh/config.d ]; then
+      cat ~/.ssh/config.d/*
+    fi
     exit 1
   fi
 
