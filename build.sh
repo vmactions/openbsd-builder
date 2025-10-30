@@ -440,7 +440,9 @@ else
     env
     echo "=============ssh env=="
     ssh $osname sh -c env
-    ls -lah
+    echo "=========check data==="
+    pwd
+    ls -lah .
     ls -lah ~
     ls -lah ~/.ssh
     if [ -e ~/.ssh/config ]; then
