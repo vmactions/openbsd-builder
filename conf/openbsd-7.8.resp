@@ -1,7 +1,7 @@
 System hostname = openbsd
 Network interface to configure = vio0
-IPv4 address for em0 = autoconf
-IPv6 address for em0 = none
+IPv4 address for vio0 = autoconf
+IPv6 address for vio0 = none
 Network interface to configure = done
 Password for root account = $2b$10$qS3/zFLn/6wTQrjNhAddEepvKw.XculyRsXH60FLXjcj5fQeZzIQu
 Start sshd(8) by default = yes
