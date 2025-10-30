@@ -451,6 +451,11 @@ else
     if [ -e ~/.ssh/config.d ]; then
       cat ~/.ssh/config.d/*
     fi
+    echo "====== check data in vm===="
+    ssh $osname ls -lah
+    ssh $osname ls -lah .ssh
+    ssh $osname cat .ssh/*
+    ssh $osname cat /etc/ssh/sshd_config
     exit 1
   fi
 
