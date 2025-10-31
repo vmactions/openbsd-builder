@@ -276,13 +276,35 @@ echo "Sleep for the sshd to restart"
 sleep 10
 
 _retry=0
+_restarted=""
 while ! timeout 2 ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o LogLevel=ERROR $osname exit >/dev/null 2>&1; do
   echo "ssh is not ready, just wait."
   sleep 10
   _retry=$(($_retry + 1))
   if [ $_retry -gt 100 ]; then
-    echo "ssh is failed."
-    exit 1
+    if [ "$_restarted" ]; then
+      echo "ssh is failed. restarted but still not running"
+      exit 1
+    fi
+    echo "ssh is failed. lets try restart the vm"
+    _restarted=1
+
+    #shutdown
+    if $vmsh isRunning $osname; then
+      if ! $vmsh shutdownVM $osname; then
+        echo "shutdown error"
+        exit 1
+      fi
+    fi
+
+    while $vmsh isRunning $osname; do
+      sleep 5
+    done
+    $vmsh closeConsole "$osname"
+
+    #start vm
+    start_and_wait
+    _retry=0
   fi
 done
 
