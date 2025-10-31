@@ -281,7 +281,7 @@ while ! timeout 2 ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/nul
   echo "ssh is not ready, just wait."
   sleep 10
   _retry=$(($_retry + 1))
-  if [ $_retry -gt 100 ]; then
+  if [ $_retry -gt 20 ]; then
     if [ "$_restarted" ]; then
       echo "ssh is failed. restarted but still not running"
       exit 1
