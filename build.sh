@@ -37,6 +37,7 @@ export VM_CPU
 export VM_USE_CONSOLE_BUILD
 export VM_USE_SSHROOT_BUILD_SSH
 export VM_NO_VNC_BUILD
+export VM_USE_CONSOLE_ENABLE_SSH
 export VM_NIC
 
 
@@ -257,7 +258,12 @@ else
   sleep 2
 
   $vmsh screenText $osname
-  $vmsh inputFile $osname enablessh.local
+  if [ "$VM_USE_CONSOLE_ENABLE_SSH" ]; then
+    #for openbsd 7.7/7.8
+    $vmsh inputFileConsole $osname enablessh.local
+  else
+    $vmsh inputFile $osname enablessh.local
+  fi
   $vmsh screenText $osname
   #sleep for the sshd server to restart
   sleep 10
