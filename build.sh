@@ -211,6 +211,7 @@ if [ ! -e ~/.ssh/id_rsa ] ; then
   ssh-keygen -f  ~/.ssh/id_rsa -q -N "" 
 fi
 
+rm -f enablessh.local
 cat enablessh.txt >enablessh.local
 
 
@@ -293,6 +294,7 @@ echo "Host host" >>.ssh/config
 echo "     HostName  192.168.122.1" >>.ssh/config
 echo "     User $USER" >>.ssh/config
 echo "     ServerAliveInterval 1" >>.ssh/config
+
 
 EOF
 
@@ -432,7 +434,7 @@ else
   if [ "$VM_SSHFS_PKG" ]; then
     ssh $osname sh <<<"$VM_INSTALL_CMD $VM_SSHFS_PKG"
   fi
-  if ssh $osname sh -c env | grep GITHUB_ ; then
+  if GITHUB_VMACTIONS=1 ssh $osname sh -c env | grep GITHUB_ ; then
     echo "SendEnv OK"
   else
     echo "SendEnv is not working"
