@@ -4,7 +4,7 @@
 echo 'pkg_scripts=""' >>/etc/rc.conf.local
 
 sleep 20
-while ps aux | grep "[m]ake newbsd"; do
+while ps aux | grep "[m]ake new"; do
   echo "reorder_kernel is running, just wait"
   sleep 5
 done
