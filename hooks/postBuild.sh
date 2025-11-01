@@ -3,14 +3,13 @@
 
 echo 'pkg_scripts=""' >>/etc/rc.conf.local
 
-
+sleep 20
 while ps aux | grep "[m]ake newbsd"; do
   echo "reorder_kernel is running, just wait"
   sleep 5
 done
 
 echo "OK, start syspatch"
-sleep 10
 
 syspatch
 
