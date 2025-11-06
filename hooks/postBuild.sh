@@ -12,7 +12,7 @@ done
 echo "OK, start syspatch"
 
 syspatch
-
+syspatch
 
 ret="$?"
 #0 means ok
