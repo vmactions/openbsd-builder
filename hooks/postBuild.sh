@@ -6,7 +6,7 @@ echo 'pkg_scripts=""' >>/etc/rc.conf.local
 
 #openbsd doesn't support syspatch for riscv64
 #https://cdn.openbsd.org/pub/OpenBSD/syspatch/7.8/
-if [ "$(uname -m)" != "riscv64" ]; then
+if [ "$(uname -m)" != "riscv64" ] || [ "$VM_RELEASE" != "7.8" ]; then
   sleep 20
   while ps aux | grep "[m]ake new"; do
     echo "reorder_kernel is running, just wait"
