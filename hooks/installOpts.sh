@@ -30,5 +30,19 @@ if [ "$VM_ARCH" = "aarch64" ] && [ "$VM_USE_CONSOLE_BUILD" ]; then
 fi
 
 
-
+if [ "$VM_ARCH" = "riscv64" ]; then
+  waitForText "Your OpenBSD install has been successfully completed"
+  #halt
+  $vmsh string h
+  $vmsh enter
+  sleep 10
+  if $vmsh isRunning $VM_OS_NAME; then
+    if ! $vmsh shutdownVM $VM_OS_NAME; then
+      echo "shutdown error"
+    fi
+    if ! $vmsh destroyVM $VM_OS_NAME; then
+      echo "destroyVM error"
+    fi
+  fi
+fi
 
