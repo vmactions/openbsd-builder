@@ -522,7 +522,9 @@ else
     ssh $osname cat /etc/ssh/sshd_config
     exit 1
   fi
-
+  #check if the /home dir is writable
+  ssh $osname mkdir -p $HOME/work
+  ssh $osname ls -lah $HOME
 fi
 
 echo "Build finished."
