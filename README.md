@@ -1,11 +1,11 @@
 
 
-[![Build](https://github.com/vmactions/openbsd-builder/actions/workflows/build.yml/badge.svg)](https://github.com/vmactions/openbsd-builder/actions/workflows/build.yml)
+[![Build](https://github.com/anyvm-org/openbsd-builder/actions/workflows/build.yml/badge.svg)](https://github.com/anyvm-org/openbsd-builder/actions/workflows/build.yml)
 
 Latest: v1.1.8
 
 
-The image builder for [openbsd-vm](https://github.com/vmactions/openbsd-vm)
+The image builder for `openbsd`
 
 
 How to use:
